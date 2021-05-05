@@ -1,13 +1,12 @@
 import React,{useState} from 'react';
+
+//material-ui
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-// import FormControlLabel from '@material-ui/core/FormControlLabel';
-// import Checkbox from '@material-ui/core/Checkbox';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
-// import Box from '@material-ui/core/Box';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
@@ -15,12 +14,9 @@ import Container from '@material-ui/core/Container';
 import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
-/*****switch */
-// import Switch from '@material-ui/core/Switch';
-// import FormGroup from '@material-ui/core/FormGroup';
-// import FormControlLabel from '@material-ui/core/FormControlLabel';
 
 import axios from 'axios';
+
 
 export default function SignUp(props) {
    
@@ -29,21 +25,21 @@ export default function SignUp(props) {
   const [data, setData] = useState({nom:'', prenom:'', email:'', password:'', role: 'user'})
   //**********technicien */
   const handlechange = (e)=>{
-    setData({...data, [e.target.name]: e.target.value})  
+    setData({...data, [e.target.name]: e.target.value})
   }
  
   /************************/
   console.log(data)
 
-  function onCreatePost(e) {
-    e.preventDefault();
-    axios.post('http://localhost:3012/api/register', data) //{ withCredentials: true }
-      .then((response) => {
-        console.log(response)
-      });
-props.history.push('/Login')
-  }
 
+  function onCreatePost(e) {
+          e.preventDefault();
+          axios.post('http://localhost:3012/api/register', data)
+            .then((response) => {
+              console.log(response.data)
+            });
+          props.history.push('/Login')
+    }
 
 
   return (

@@ -5,5 +5,6 @@
 
  route.post('/register',authController.userRegister);//register
  route.post('/login',authController.loginUser); // login 
+ route.get('/logout',authController.logoutController); //logout
 
  module.exports = route;

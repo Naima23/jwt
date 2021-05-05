@@ -9,21 +9,15 @@ const authRoutes = require('./routes/authRoutes')
 
 
 //set up server
-const app = express('');
+const app = express();
 const port = 3012;
-app.listen(port, ()=>console.log('http://localhost:'+port));
-
-app.use(cookie());
-app.use(cors());
-// const corsOptions = {
-//     origin: 'http://localhost:3000/', 
-//     credentials: true, //access-control-allow-credentials:true
-//     optionSuccessStatus: 200
-// }
-// app.use(cors(corsOptions))
-
 app.use(express.json()); // for data json
 app.use(express.urlencoded({extended:false})); // for  data http
+
+app.use(cookie());
+app.use(cors( {  origin: 'http://localhost:3000', credentials: true }));
+
+
 
 //connect to mongodb
 mongoose.connect(process.env.DATABAS,{useUnifiedTopology: true ,useNewUrlParser: true })
@@ -37,4 +31,5 @@ mongoose.connect(process.env.DATABAS,{useUnifiedTopology: true ,useNewUrlParser:
 //Router
 app.use('/api',authRoutes);
 
+app.listen(port, ()=>console.log('http://localhost:'+port));
 
